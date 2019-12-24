@@ -42,3 +42,9 @@ from sklearn.compose import ColumnTransformer
 
 oneHotEncorder = ColumnTransformer(transformers=[("OneHot", OneHotEncoder(), [1,3,5,6,7,8,9,13])], remainder='passthrough')
 previsores = oneHotEncorder.fit_transform(previsores).toarray()
+
+# padronizando os valores dos previsores
+# foi feita a opção de não padronizar as colunas criadas pelo OneHotEncoder
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+previsores[:, 102:] = scaler.fit_transform(previsores[:, 102:])
