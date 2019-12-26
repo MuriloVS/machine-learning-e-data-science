@@ -39,7 +39,6 @@ previsores = oneHotEncoder.fit_transform(previsores).toarray()
 
 # outra maneira para fazer as adequações dos valores
 from sklearn.compose import ColumnTransformer
-
 oneHotEncorder = ColumnTransformer(transformers=[("OneHot", OneHotEncoder(), [1,3,5,6,7,8,9,13])], remainder='passthrough')
 previsores = oneHotEncorder.fit_transform(previsores).toarray()
 
@@ -48,3 +47,10 @@ previsores = oneHotEncorder.fit_transform(previsores).toarray()
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 previsores[:, 102:] = scaler.fit_transform(previsores[:, 102:])
+
+# separação entre base de treinamento e testes
+# por padrão 75% dos elementos são usados p/ treinamento e 25% p/ testes
+# para alterar podemos utilizar os parâmetros train_size e test_size
+# random_state é utilizado como seed, garante que teremos os mesmos resultados em todos as runs
+from sklearn.model_selection import train_test_split
+previsoresTreinamento, previsoresTeste, classeTreinamento, classeTeste = train_test_split(previsores, classe, random_state=0)
