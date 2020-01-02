@@ -4,7 +4,7 @@ Created on Tue Dec 24 20:07:43 2019
 
 @author: Murilo
 
-Algoritmo Naive Bayes
+Algoritmo Naive Bayes: trabalha com uma tabela de probabilidade
 Vantagens:
  - rápido;
  - simplicidade de interpratação (multiplicação de probabilidades);
