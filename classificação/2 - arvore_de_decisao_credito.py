@@ -19,7 +19,7 @@ Vantagens:
  
 Desvantagens:
  - geração de árvores muito complexas;
- - pequenas mudançãs nos dados podem mudar a árore (poda pode ajudar);
+ - pequenas mudançãs nos dados podem mudar a árvore (poda pode ajudar);
  - problema np-completo para construir a árvore (problema bastante complexo).  
  
  Precisão neste exemplo (75% para treinamento): 0,982
