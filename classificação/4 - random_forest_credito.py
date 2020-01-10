@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Jan  2 20:16:16 2020
 
-@author: mvs_r
-"""
-
-# -*- coding: utf-8 -*-
 """
 Created on Wed Jan  2 20:20:31 2020
 
@@ -29,7 +23,8 @@ Desvantagens:
  Precisão neste exemplo (n_estimators=10, com e sem scaler): 0,968
  Precisão neste exemplo (n_estimators=20, com e sem scaler): 0,978
  Precisão neste exemplo (n_estimators=50, com e sem scaler): 0,98
- Scaler não é necessário.
+ 
+ * Scaler não é necessário.
 """
 
 import pandas as pd
