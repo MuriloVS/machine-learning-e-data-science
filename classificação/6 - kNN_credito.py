@@ -13,7 +13,7 @@ Algoritmo kNN (k-Nearest Neighbour). Calcula a distância de um ponto
    PRECISAM estar na mesma escala.
 
 Características:   
-  - indicado quando o relacionamento entre as caracterpisticas é complexo;
+  - indicado quando o relacionamento entre as características é complexo;
   - valor de k pequeno: dados com ruídos e outliers pode prejudicar;
   - valor de k grande: tendência a classificar a classe com mais elementos
     (overfitting) - valor default 3 ou 5;
