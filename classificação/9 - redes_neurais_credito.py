@@ -35,14 +35,55 @@ Redes Neurais. Utilizadas quando não temos um algorimo específico para resolve
     
     Erro: um dos algoritmos mais simples é:
         erro = respostaCorreta - respostaCalculada
-        Calcula-se a média absoluta dos erros.
+        Calcula-se a média absoluta dos erros. 
         
         Com descida do gradiente: https://tinyurl.com/yxuvozna
     
-        Delta de saída: deltaSaida = erro * derivadaSigmoide
+    Delta de saída: deltaSaida = erro * derivadaSigmoide
         
+    Delta da camada escondida: 
+        delstaCamadaEscondida = derivadaSigmoide * peso * deltaSaida
     
+        
+    Backpropagation: atualiza os pesos entre as arestas, do fim para            
+        o início. 
+        peso(n+1) = (peso*momento)+(entrada*delta*taxaDeAprendizagem)
+        Taxa de aprendizagem: quão rápido o algoritmo vai "aprender". Valor alto
+            faz com que a convergência ocorra rapidámente mas pode ser que perca-
+            se o mínimo global. Com taxa de aprendizagem menor o algoritmo fica
+            mais lento, mas com maiores chancer de encontrar o mínimo global cor-
+            retamente.
+        Momento (momentum): escapar do mínimos locais (nem sempre funciona).
+            Quando é alto aumenta a velocidade de convergência; quando é lento
+            ajuda a evitar os mínimos locais.
+            
+    Bias (viés): adiciona um atributo em cada camada, com seus respectivos 
+        pesos (em negrito na imagem https://tinyurl.com/y3svn5dy ). Utilizado 
+        em muitas arquiteturas de redes neurais. O objetivo é mudar a saída
+        com a unidade de bias.    
+            
+    Em problemas mais complexos é necessário mais que um neurônio na camada de
+        saída. ( https://tinyurl.com/yxszaagm )
+        Normalmente temos um neurônio para cada classe de saída.
+       
+    Para deep learning: redes neurais concolucionais, redes neurais recor-
+        rentes, Keras, Theano, TensorFlow, programação em GPU etc.
     
+    Camadas ocultas: uma das fórmulas mais utlizadas é esta:
+        neurônios = (entradas + saídas) / 2
+        Onde entradas são as features e as saídas são as classes.
+        Lembrando que este é o número de neurônios, não o número de camadas
+        ocultas. Duas camadas funcioname bem para poucos dados. Para problemas
+        mais complexos, como detecção de câncer através de reconhecimento de
+        imagens, mais de 100 camadas podem ser necessárias. Problemas
+        linearmente separáveis não necessitam de camadas ocultas.
+    
+    É possível (recomendável) utilizar diferentes fórmulas de ativação nas
+        camadas ocultas e na camada de saída. Sugestão: duas camadas ocultas
+        com função de ativação relu e sigmoide (uma camada de saída) ou
+        softmax (mais de uma camada de saída)
+        
+        
     Vantagens:
         - 
         
