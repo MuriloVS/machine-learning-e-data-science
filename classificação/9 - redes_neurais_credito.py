@@ -15,7 +15,17 @@ Redes Neurais. Utilizadas quando não temos um algorimo específico para resolve
     
     Fundamentos biológicos: ativação (ou não) do neurônio conforme o potencial
         elétrico do corpo da célula. O neurônio dispara caso a entrada seja
-        maior que um número definido. 
+        maior que um número definido.
+        
+    Neurônio artificial: https://tinyurl.com/yysfswzm
+        - Pesos são sinapses;
+        - Peso positivo: sinapse excitadora;
+        - Peso negetivo: sinapse inibidora;
+        - Pesos amplificam ou reduzem o sinal de entrada;
+        - Conhecimento da rede neural são os pesos. É este item que a rede pro-
+          cura aprender para adequar à base de dados que está sendo analisada.
+        
+        
         
         
     Vantagens:
