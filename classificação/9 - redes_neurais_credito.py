@@ -25,9 +25,24 @@ Redes Neurais. Utilizadas quando não temos um algorimo específico para resolve
         - Conhecimento da rede neural são os pesos. É este item que a rede pro-
           cura aprender para adequar à base de dados que está sendo analisada.
         
+    Perceptron de uma camada só é adequado para resolução de problemas que são
+    linearmente separáveis (uma reta consegue separar as classes). Para pro-
+    blemas não lineares utilizamos um perceptron de várias camadas.    
+    Multilayer perceptron: https://tinyurl.com/yyhq46rn
+    
+    Funções de ativação: step (0 ou 1), sigmoid (entre 0 e 1), hyperbolic
+    tangent (entre -1 e 1) etc. https://en.wikipedia.org/wiki/Activation_function
+    
+    Erro: um dos algoritmos mais simples é:
+        erro = respostaCorreta - respostaCalculada
+        Calcula-se a média absoluta dos erros.
         
+        Com descida do gradiente: https://tinyurl.com/yxuvozna
+    
+        Delta de saída: deltaSaida = erro * derivadaSigmoide
         
-        
+    
+    
     Vantagens:
         - 
         
