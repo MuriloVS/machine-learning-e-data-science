@@ -34,11 +34,26 @@ Redes Neurais. Utilizadas quando não temos um algorimo específico para resolve
     tangent (entre -1 e 1) etc. https://en.wikipedia.org/wiki/Activation_function
     
     Erro: um dos algoritmos mais simples é:
-        erro = respostaCorreta - respostaCalculada
+        Uma camada de saída: erro = respostaCorreta - respostaCalculada
         Calcula-se a média absoluta dos erros. 
+        Mais de uma cadama de saída:
+            erro = (respostaCorreta1 - respostaCalculada1) + 
+                   (respostaCorreta2 - respostaCalculada2) + etc.        
         
         Com descida do gradiente: https://tinyurl.com/yxuvozna
-    
+        
+        Exitem duas técnicas de descida do gradiente para calcular os erros:
+            - Batch: cálculo o erro para todos os registros e ajusta todos os
+              pesos, conforme necessário. Ttambém temos o mini batch que escolhe
+              um número de registros para rodar e atualizar os pesos.
+            - Stochastic: cálcula o erro para cada registro individualmente e
+              faz o ajuste do peso no registro, conforme necessário. Este tipo
+              de descida do gradiente ajuda a prevenir mínimos locais em su-
+              perfícies não convexas ( https://tinyurl.com/yybpfecq ). É con-
+              siderado mais rápido porque não precisa carregar todos os regis-
+              tros na memória (cada um é cálculado individualmente).        
+              
+              
     Delta de saída: deltaSaida = erro * derivadaSigmoide
         
     Delta da camada escondida: 
@@ -78,37 +93,44 @@ Redes Neurais. Utilizadas quando não temos um algorimo específico para resolve
         imagens, mais de 100 camadas podem ser necessárias. Problemas
         linearmente separáveis não necessitam de camadas ocultas.
     
-    É possível (recomendável) utilizar diferentes fórmulas de ativação nas
+    É possível (recomendável?) utilizar diferentes fórmulas de ativação nas
         camadas ocultas e na camada de saída. Sugestão: duas camadas ocultas
         com função de ativação relu e sigmoide (uma camada de saída) ou
         softmax (mais de uma camada de saída)
         
         
-    Vantagens:
-        - 
-        
-    Desvantagens:
-        - 
-        
 Precisão:
-  - 
+  - Todos os tratamentos (sem alterar parâmetros): 0,994
+  - Todos os tratamento (max_iter=1000, tol=0.000001): 0,996
+  
+  - Todos os tratamento (max_iter=1000, tol=0.000001, activation="tanh"): 0,994
+  
+  - Todos os tratamento (max_iter=1000, tol=0.000001, activation="logistic"): 0,992
+  
+  - Todos os tratamento (max_iter=1000, tol=0.000001, solver="lbfgs"): 0,996
+  
+  - Todos os tratamento (max_iter=1000, tol=0.000001, solver="sgd"): 0,972
+  
+  - Sem escalonamento (sem alterar parâmetros): 0,872
   
     
 """
 
-import pandas as pd
+import pandas as pd, numpy as np
 
 # leitura da base de dados
 base = pd.read_csv('credit_data.csv')
 
 # correção dos valores de média negativos (não corrige valores que faltam)
 base.loc[base.age < 0, 'age'] = base.loc[base.age > 0, 'age'].mean()
-# outra maneira para corrigir valores que faltam (sem usar SimpleImputer)
-base.loc[pd.isna(base['age']), 'age'] = base.loc[base.age > 0, 'age'].mean()
 
 # separação entre os previsores e classe
 previsores = base.iloc[:, 1:4].values
 classe = base.iloc[:, 4].values
+
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(missing_values=np.nan, strategy="mean")
+previsores = imputer.fit_transform(previsores)
 
 # escalonamento
 from sklearn.preprocessing import StandardScaler
@@ -120,7 +142,14 @@ from sklearn.model_selection import train_test_split
 previsoresTreinamento, previsoresTeste, classeTreinamento, classeTeste = train_test_split(previsores, classe, random_state=0)
 
 # treinamento
-
+# MLPC = Multi-layer perceptron
+from sklearn.neural_network import MLPClassifier
+classificador = MLPClassifier(verbose=True,
+                              max_iter=1000,
+                              tol=0.000001,
+                              solver="adam",
+                              activation="relu",
+                              hidden_layer_sizes=(100))
 classificador.fit(previsoresTreinamento, classeTreinamento)
 resultado = classificador.predict(previsoresTeste)
 
