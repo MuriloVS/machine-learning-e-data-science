@@ -26,6 +26,7 @@ base.loc[base.age < 0, 'age'] = base.loc[base.age > 0, 'age'].mean()
 # separação entre os previsores e classe
 previsores = base.iloc[:, 1:4].values
 classe = base.iloc[:, 4].values
+
 # corrige os valores que faltam
 from sklearn.impute import SimpleImputer
 imputer = SimpleImputer()
