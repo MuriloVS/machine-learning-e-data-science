@@ -28,7 +28,7 @@ columns = []
 for i in range(len(previsores[0])):
     if type(previsores[:, i][0]) == type('str'):
         columns.append(i)
-column_tranformer = ColumnTransformer([('one_hot_encoder', OneHotEncoder(), columns)],remainder='passthrough')
+column_tranformer = ColumnTransformer([('one_hot_encoder', OneHotEncoder(), columns)], remainder='passthrough')
 previsores = column_tranformer.fit_transform(previsores).toarray()
 
 labelencoder_classe = LabelEncoder()
@@ -55,7 +55,7 @@ previsoresTreinamento, previsoresTeste, classeTreinamento, classeTeste = train_t
 from keras.models import Sequential
 from keras.layers import Dense
 classificador = Sequential()
-classificador.add(Dense(units = 8, activation = 'relu', input_dim = 14))
+classificador.add(Dense(units = 8, activation = 'relu', input_dim = 108))
 classificador.add(Dense(units = 8, activation = 'relu'))
 classificador.add(Dense(units = 1, activation = 'sigmoid'))
 classificador.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
@@ -67,3 +67,4 @@ resultado = (resultado > 0.5)
 from sklearn.metrics import confusion_matrix, accuracy_score
 matriz = confusion_matrix(classeTeste, resultado)
 precisao = accuracy_score(classeTeste, resultado)
+
