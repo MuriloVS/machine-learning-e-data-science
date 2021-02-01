@@ -13,7 +13,7 @@ Utilizando k cross validation estratificada. Este método procura fazer uma melh
 divisão entre as classes nos folds criados (estamos usando 10). As partes repre-
 sentam melhor o todo.
 
-A precisão ficou em 0,9231 e o desvio padrão em 0,0065
+A precisão ficou em 0,9254 e o desvio padrão em 0,0136
 
 @author: mvs_r
 """
@@ -50,10 +50,11 @@ aux = np.zeros(shape=(previsores.shape[0], 1))
 # importando a biblioteca para fazer a validação cruzada estratificada, com k=10
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, confusion_matrix
+
 kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=0)
 resultado = []
 matrizes = []
-for indiceTeste, indiceTreinamento in kfold.split(previsores, aux):
+for indiceTreinamento, indiceTeste in kfold.split(previsores, aux):
     classificador.fit(previsores[indiceTreinamento], classe[indiceTreinamento])
     previsoes = classificador.predict(previsores[indiceTeste])
     precisao = accuracy_score(classe[indiceTeste], previsoes)
