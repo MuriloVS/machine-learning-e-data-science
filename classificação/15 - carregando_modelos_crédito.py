@@ -29,7 +29,7 @@ resultado_SVM = SVM.score(previsores, classe)
 resultado_RF = RF.score(previsores, classe)
 resultado_RN = RN.score(previsores, classe)
 
-novo_registro = np.asarray([[20000, 20, 15000]])
+novo_registro = np.asarray([[50000, 80, 40000]])
 novo_registro = novo_registro.reshape(-1, 1)
 novo_registro = scaler.fit_transform(novo_registro)
 novo_registro = novo_registro.reshape(-1, 3)
@@ -37,3 +37,12 @@ novo_registro = novo_registro.reshape(-1, 3)
 resposta_SVM = SVM.predict(novo_registro)
 resposta_RF = RF.predict(novo_registro)
 resposta_RN = RN.predict(novo_registro)
+
+probabilidade_SVM = SVM.predict_proba(novo_registro)
+convianca_SVM = probabilidade_SVM.max()
+
+probabilidade_RF = RF.predict_proba(novo_registro)
+convianca_RF = probabilidade_RF.max()
+
+probabilidade_RN = RN.predict_proba(novo_registro)
+convianca_RN = probabilidade_RN.max()

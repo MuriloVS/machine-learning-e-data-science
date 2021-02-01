@@ -36,7 +36,7 @@ classificadorRF.fit(previsores, classe)
 
 # SVM
 from sklearn.svm import SVC
-classificadorSVM = SVC(kernel='rbf', C=2.0)
+classificadorSVM = SVC(kernel='rbf', C=2.0, probability=True)
 classificadorSVM.fit(previsores, classe)
 
 # redes neurais
